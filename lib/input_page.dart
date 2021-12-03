@@ -2,57 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reuseable_code.dart';
 
-
-enum Gender{
+enum Gender {
   male,
   female,
 }
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
 }
 
 class _InputPageState extends State<InputPage> {
-  Gender? genderSelected = null;
+  Gender? genderSelected;
+  double _currentVal = 0.0;
 
-
-  // Color maleCardColor = inactiveCardColor;
-  // Color femaleCardColor = inactiveCardColor;
-  /*void updateColor(Gender genderVar)
-  {
-
-
-    //if 1 = male
-    if(genderVar == Gender.male)
-
-      {
-        if(maleCardColor == inactiveCardColor)
-          {
-            maleCardColor = activeCardColor;
-            femaleCardColor = inactiveCardColor;
-          }
-        else
-          {
-            maleCardColor = inactiveCardColor;
-
-
-          }
-      }
-    //2 = Female
-    if(genderVar == Gender.female)
-      {
-        if(femaleCardColor == inactiveCardColor)
-          {
-            femaleCardColor = activeCardColor;
-            maleCardColor = inactiveCardColor;
-          }
-        else
-          {
-            femaleCardColor = inactiveCardColor;
-          }
-      }
-  }
-*/
+  int weight=30;
+  int age = 10;
 
 
   @override
@@ -77,10 +42,9 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     child: ReuseableContainer(
-                      colour: genderSelected == Gender.male?
-                      inactiveCardColor:
-                      activeCardColor,
-
+                      colour: genderSelected == Gender.male
+                          ? inactiveCardColor
+                          : activeCardColor,
                       icon_box: BoxContent(
                         icon: FontAwesomeIcons.mars,
                         Box_Text: "MALE",
@@ -90,7 +54,7 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       setState(() {
                         //2 for female
                         print("Female Card is Selected");
@@ -99,9 +63,9 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     child: ReuseableContainer(
-                        colour: genderSelected == Gender.female?
-                        inactiveCardColor:activeCardColor,
-
+                        colour: genderSelected == Gender.female
+                            ? inactiveCardColor
+                            : activeCardColor,
                         icon_box: BoxContent(
                           icon: FontAwesomeIcons.venus,
                           Box_Text: "FEMALE",
@@ -114,16 +78,44 @@ class _InputPageState extends State<InputPage> {
               child: ReuseableContainer(
                 colour: activeCardColor,
                 icon_box: Column(
-
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text("HEIGHT",
-                    style: labelStyle),
+                    Text("HEIGHT", style: labelStyle),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
                       children: <Widget>[
-                        Text("100",
-                        style: valueStyle,),
+                        Text(
+                          _currentVal.toString(),
+                          style: valueStyle,
+                        ),
+                        Text("CM", style: labelStyle),
                       ],
-                    )
+                    ),
+                    SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                        thumbShape:
+                            RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                        overlayShape:
+                            RoundSliderOverlayShape(overlayRadius: 30.0),
+                        activeTrackColor: Colors.white,
+                         thumbColor: Color(0XFFFF0067),
+                      ),
+                      child: Slider(
+                        value: _currentVal,
+                        min: 0.0,
+                        max: 50.0,
+                        divisions: 10,
+                        label: _currentVal.toString(),
+                        inactiveColor: Colors.grey,
+                        onChanged: (double value) {
+                          setState(() {
+                            _currentVal = value;
+                          });
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -144,12 +136,42 @@ class _InputPageState extends State<InputPage> {
                           ),
                         ),
                         Text(
-                          "74",
+                          weight.toString(),
                           style: TextStyle(
                             fontSize: 70.0,
                             color: Color(0xFFFEFEFE),
                             fontWeight: FontWeight.bold,
                           ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundedIconButton(
+                              onPressed: ()
+                              {
+                                setState(() {
+                                  if(weight>0)
+                                    {
+                                      weight--;
+                                    }
+
+                                });
+                              },
+                              icon: FontAwesomeIcons.minus,
+                            ),
+                            SizedBox(width: 5.0),
+                            RoundedIconButton(
+                              onPressed: ()
+                              {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+
+
+                              icon: FontAwesomeIcons.plus,
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -158,6 +180,53 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReuseableContainer(
                     colour: activeCardColor,
+                    icon_box: Column(
+                      children: [
+                        Text(
+                          "Age",
+                          style: TextStyle(
+                            color: Color(0xFFA2A3B4),
+                            fontSize: 24.0,
+                          ),
+                        ),
+                        Text(
+                          age.toString(),
+                          style: TextStyle(
+                            fontSize: 70.0,
+                            color: Color(0xFFFEFEFE),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundedIconButton(
+                              onPressed: ()
+                              {
+                                setState(() {
+                                  if(age>0)
+                                    {
+                                      age--;
+                                    }
+                                });
+                              },
+
+                              icon: FontAwesomeIcons.minus,
+                            ),
+                            SizedBox(width: 5.0),
+                            RoundedIconButton(
+                              onPressed: ()
+                              {
+                                setState(() {
+                                      age++;
+                                });
+                              },
+                              icon: FontAwesomeIcons.plus,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ]),
@@ -192,4 +261,4 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
-//Reuseable Container Card
+

@@ -1,8 +1,10 @@
+
 import 'package:flutter/Material.dart';
 
 const activeCardColor = Color(0xFF14193B);
 const BtnColor = Color(0XFFFF0067);
 const inactiveCardColor = Color(0xFF111328);
+
 
 const labelStyle = TextStyle(
   fontSize: 18.0,
@@ -53,6 +55,31 @@ class ReuseableContainer extends StatelessWidget {
       margin: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
           color: colour, borderRadius: BorderRadius.circular(10.0)),
+    );
+  }
+}
+
+
+
+class RoundedIconButton extends StatelessWidget {
+  RoundedIconButton({required this.icon,required this.onPressed});
+  final IconData icon;
+  final void Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      elevation: 3.0,
+      onPressed: onPressed,
+      shape: CircleBorder(),
+      constraints: BoxConstraints.tightFor(
+        width: 56.0,
+        height: 56.0,
+      ),
+      fillColor: Color(0xFF4C4F5E),
+      child: Icon(icon),
+
+
     );
   }
 }
