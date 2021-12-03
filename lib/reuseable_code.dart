@@ -69,7 +69,7 @@ class RoundedIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
-      elevation: 3.0,
+      elevation: 3.1,
       onPressed: onPressed,
       shape: CircleBorder(),
       constraints: BoxConstraints.tightFor(

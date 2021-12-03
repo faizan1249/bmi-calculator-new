@@ -213,7 +213,7 @@ class _InputPageState extends State<InputPage> {
 
                               icon: FontAwesomeIcons.minus,
                             ),
-                            SizedBox(width: 5.0),
+                            SizedBox(width: 6.0),
                             RoundedIconButton(
                               onPressed: ()
                               {
