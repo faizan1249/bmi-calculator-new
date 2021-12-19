@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reuseable_code.dart';
+import 'result.dart';
 
 enum Gender {
   male,
@@ -16,9 +17,20 @@ class _InputPageState extends State<InputPage> {
   Gender? genderSelected;
   double _currentVal = 0.0;
 
-  int weight=30;
+  int weight = 30;
   int age = 10;
 
+  void bmiCalculate()
+  {
+    double _height = _currentVal.toDouble();
+    double _weight = weight.toDouble();
+
+    double bmi_res = 0;
+
+    bmi_res = (_weight/_height/_height)*10000;
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> result(bmi_res:bmi_res)));
+    print(bmi_res);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +112,7 @@ class _InputPageState extends State<InputPage> {
                         overlayShape:
                             RoundSliderOverlayShape(overlayRadius: 30.0),
                         activeTrackColor: Colors.white,
-                         thumbColor: Color(0XFFFF0067),
+                        thumbColor: Color(0XFFFF0067),
                       ),
                       child: Slider(
                         value: _currentVal,
@@ -147,28 +159,22 @@ class _InputPageState extends State<InputPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RoundedIconButton(
-                              onPressed: ()
-                              {
+                              onPressed: () {
                                 setState(() {
-                                  if(weight>0)
-                                    {
-                                      weight--;
-                                    }
-
+                                  if (weight > 0) {
+                                    weight--;
+                                  }
                                 });
                               },
                               icon: FontAwesomeIcons.minus,
                             ),
                             SizedBox(width: 5.0),
                             RoundedIconButton(
-                              onPressed: ()
-                              {
+                              onPressed: () {
                                 setState(() {
                                   weight++;
                                 });
                               },
-
-
                               icon: FontAwesomeIcons.plus,
                             ),
                           ],
@@ -201,24 +207,20 @@ class _InputPageState extends State<InputPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RoundedIconButton(
-                              onPressed: ()
-                              {
+                              onPressed: () {
                                 setState(() {
-                                  if(age>0)
-                                    {
-                                      age--;
-                                    }
+                                  if (age > 0) {
+                                    age--;
+                                  }
                                 });
                               },
-
                               icon: FontAwesomeIcons.minus,
                             ),
                             SizedBox(width: 6.0),
                             RoundedIconButton(
-                              onPressed: ()
-                              {
+                              onPressed: () {
                                 setState(() {
-                                      age++;
+                                  age++;
                                 });
                               },
                               icon: FontAwesomeIcons.plus,
@@ -238,7 +240,7 @@ class _InputPageState extends State<InputPage> {
                   SizedBox(
                     height: 60,
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed:bmiCalculate,
                       child: Text(
                         "Calculate Your BMI",
                         style: TextStyle(
@@ -260,5 +262,3 @@ class _InputPageState extends State<InputPage> {
         ));
   }
 }
-
-

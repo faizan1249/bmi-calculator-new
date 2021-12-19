@@ -1,22 +1,18 @@
-
 import 'package:flutter/Material.dart';
 
 const activeCardColor = Color(0xFF14193B);
 const BtnColor = Color(0XFFFF0067);
 const inactiveCardColor = Color(0xFF111328);
 
-
 const labelStyle = TextStyle(
   fontSize: 18.0,
   color: Color(0xFFA2A3B4),
 );
 
-const valueStyle =TextStyle(
+const valueStyle = TextStyle(
   fontSize: 50.0,
   fontWeight: FontWeight.w900,
 );
-
-
 
 class BoxContent extends StatelessWidget {
   BoxContent({this.icon, required this.Box_Text, this.weightVal});
@@ -24,7 +20,6 @@ class BoxContent extends StatelessWidget {
   final IconData? icon;
   final String Box_Text;
   final String? weightVal;
-
 
   @override
   Widget build(BuildContext context) {
@@ -59,10 +54,8 @@ class ReuseableContainer extends StatelessWidget {
   }
 }
 
-
-
 class RoundedIconButton extends StatelessWidget {
-  RoundedIconButton({required this.icon,required this.onPressed});
+  RoundedIconButton({required this.icon, required this.onPressed});
   final IconData icon;
   final void Function() onPressed;
 
@@ -78,8 +71,6 @@ class RoundedIconButton extends StatelessWidget {
       ),
       fillColor: Color(0xFF4C4F5E),
       child: Icon(icon),
-
-
     );
   }
 }
